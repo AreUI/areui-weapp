@@ -1,0 +1,30 @@
+{
+  "name": "areui-weapp",
+  "private": true,
+  "version": "0.0.1",
+  "description": "微信小程序 UI 组件库 基于remaxjs框架",
+  "main": "index.js",
+  "keywords": [],
+  "author": "zzmmtt <zhengmt@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "remax build -t wechat -w",
+    "build": "cross-env NODE_ENV=production remax build -t wechat",
+    "clean": "rimraf dist",
+    "prebuild": "npm run clean"
+  },
+  "dependencies": {
+    "react": "^16.12.0",
+    "remax": "^1.10.4",
+    "clsx": "^1.0.4"
+  },
+  "devDependencies": {
+    "@types/react": "^16.9.16",
+    "chokidar": "^3.3.0",
+    "cross-env": "^6.0.3",
+    "less": "^3.10.2",
+    "remax-cli": "^1.10.4",
+    "rimraf": "^3.0.0",
+    "typescript": "^3.7.3"
+  }
+}

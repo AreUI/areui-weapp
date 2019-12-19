@@ -1,0 +1,29 @@
+{
+	"miniprogramRoot": "dist/",
+	"setting": {
+		"urlCheck": false,
+		"es6": false,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"coverView": true,
+		"autoAudits": false,
+		"uglifyFileName": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		},
+		"bundle": false
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.9.4",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"appid": "",
+	"projectname": "areui-weapp",
+	"condition": {}
+}
