@@ -51,10 +51,10 @@ interface AuTypographyProps {
 		| 'h4'
 		| 'h5'
 		| 'h6'
-		|	'display1'
-		|	'display2'
-		|	'display3'
-		|	'display4'
+		| 'display1'
+		| 'display2'
+		| 'display3'
+		| 'display4'
 		| 'subtitle1'
 		| 'subtitle2'
 		| 'subtitle3'
@@ -64,6 +64,7 @@ interface AuTypographyProps {
 		| 'inherit';
 	selectable?: boolean;
 }
+
 const AuTypography: React.FC<AuTypographyProps> = ({
 	children,
 	className,
