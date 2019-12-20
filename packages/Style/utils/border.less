@@ -1,39 +1,39 @@
 // Border
 .border() {
-	& {
+  & {
     .method-style-var(border, "@border-width-base solid @border-color-base");
-	}
-	&-top {
-		.method-style-var(border-top, "@border-width-base solid @border-color-base");
-	}
-	&-right {
-		.method-style-var(border-right, "@border-width-base solid @border-color-base");
-	}
-	&-bottom {
-		.method-style-var(border-bottom, "@border-width-base solid @border-color-base");
-	}
-	&-left {
-		.method-style-var(border-left, "@border-width-base solid @border-color-base");
-	}
+  }
+  &-top {
+    .method-style-var(border-top, "@border-width-base solid @border-color-base");
+  }
+  &-right {
+    .method-style-var(border-right, "@border-width-base solid @border-color-base");
+  }
+  &-bottom {
+    .method-style-var(border-bottom, "@border-width-base solid @border-color-base");
+  }
+  &-left {
+    .method-style-var(border-left, "@border-width-base solid @border-color-base");
+  }
 
-	&-0 {
-		border: 0;
-	}
-	&-top-0 {
-		border-top: 0;
-	}
-	&-right-0 {
-		border-right: 0;
-	}
-	&-bottom-0 {
-		border-bottom: 0;
-	}
-	&-left-0 {
-		border-left: 0;
-	}
+  &-0 {
+    border: 0;
+  }
+  &-top-0 {
+    border-top: 0;
+  }
+  &-right-0 {
+    border-right: 0;
+  }
+  &-bottom-0 {
+    border-bottom: 0;
+  }
+  &-left-0 {
+    border-left: 0;
+  }
 
-	& {
-		.method-each-color(border-color, true);
+  & {
+    .method-each-color(border-color, true);
   }
   
 }
