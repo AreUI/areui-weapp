@@ -1,0 +1,92 @@
+//Text
+.text() {
+	.text-left {
+		text-align: left;
+	}
+
+	.text-center {
+		text-align: center;
+	}
+
+	.text-right {
+		text-align: right;
+	}
+
+	.text-justify {
+		text-align: justify;
+	}
+
+	.text-Abc {
+		text-transform: capitalize;
+	}
+
+	.text-abc {
+		text-transform: lowercase;
+	}
+
+	.text-ABC {
+		text-transform: uppercase;
+	}
+
+	.text-em {
+		font-style: italic;
+	}
+
+	.text-del {
+		text-decoration: line-through;
+	}
+
+	.text-ins {
+		text-decoration: underline;
+	}
+
+	.text-dotted {
+		text-decoration: underline dotted;
+	}
+
+	.text-sub,
+	.text-sup {
+		font-size: @font-size-smaller;
+		line-height: 0;
+		position: relative;
+		vertical-align: baseline;
+	}
+
+	.text-sub {
+		bottom: -0.25em;
+	}
+
+	.text-sup {
+		top: -0.5em;
+	}
+
+	.text-small {
+		font-size: @font-size-small;
+	}
+
+	.text-light {
+		font-weight: @font-weight-light;
+	}
+
+	.text-lighter {
+		font-weight: @font-weight-lighter;
+	}
+
+	.text-normal {
+		font-weight: @font-weight-normal;
+	}
+
+	.text-bold {
+		font-weight: @font-weight-bold;
+	}
+
+	.text-bolder {
+		font-weight: @font-weight-bolder;
+	}
+
+	.text-reset {
+		color: inherit;
+	}
+
+	.method-each-color(color);
+}

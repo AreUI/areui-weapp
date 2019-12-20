@@ -1,0 +1,64 @@
+// Component Typography
+@import '../Style/themes/base';
+
+.AuTypography {
+	font-family: @typography-headings-font-family;
+	&-h1,
+	&-h2,
+	&-h3,
+	&-h4,
+	&-h5,
+	&-h6 {
+		margin-bottom: @typography-headings-margin-bottom;
+		font-family: @typography-headings-font-family;
+		font-weight: @typography-headings-font-weight;
+		line-height: @typography-headings-line-height;
+	}
+
+	.method-each-text-dispaly(@typography-text-dispalys);
+
+	&-text-left {
+		.text>.text-left();
+	}
+
+	&-text-center {
+		.text>.text-center();
+	}
+
+	&-text-right {
+		.text>.text-right();
+	}
+
+	&-text-justify {
+		.text>.text-justify();
+	}
+
+	&-align {
+		.align();
+	}
+
+	&-text{
+		.method-each-color(color, false);
+	}
+
+	&-bg{
+		.method-each-color(background-color, false);
+	}
+
+	&-text-nowrap {
+		.method-no-wrap();
+		.method-multi-ellipsis(5);
+	}
+
+	&-gutter-bottom {
+		margin-bottom: 0.35em;
+	}
+
+	&-paragraph {
+		margin-bottom: @font-size-16;
+	}
+
+	&-display {
+		.display();
+	}
+}

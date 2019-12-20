@@ -1,0 +1,109 @@
+// Border
+.border() {
+	& {
+    .method-style-var(border, "@border-width-base solid @border-color-base");
+	}
+	&-top {
+		.method-style-var(border-top, "@border-width-base solid @border-color-base");
+	}
+	&-right {
+		.method-style-var(border-right, "@border-width-base solid @border-color-base");
+	}
+	&-bottom {
+		.method-style-var(border-bottom, "@border-width-base solid @border-color-base");
+	}
+	&-left {
+		.method-style-var(border-left, "@border-width-base solid @border-color-base");
+	}
+
+	&-0 {
+		border: 0;
+	}
+	&-top-0 {
+		border-top: 0;
+	}
+	&-right-0 {
+		border-right: 0;
+	}
+	&-bottom-0 {
+		border-bottom: 0;
+	}
+	&-left-0 {
+		border-left: 0;
+	}
+
+	& {
+		.method-each-color(border-color, true);
+  }
+  
+}
+
+// Border-radius
+
+.rounded{
+
+  & {
+    .method-style-var(border-radius, "@border-radius-base");
+  }
+
+  &-top {
+    .method-style-var(border-top-left-radius, "@border-radius-base");
+    .method-style-var(border-top-right-radius, "@border-radius-base");
+    &-left{
+    .method-style-var(border-top-left-radius, "@border-radius-base");
+      }
+    &-right{
+    .method-style-var(border-top-right-radius, "@border-radius-base");
+      }
+  }
+
+  &-right {
+    .method-style-var(border-top-right-radius, "@border-radius-base");
+    .method-style-var(border-bottom-right-radius, "@border-radius-base");
+  }
+
+  &-bottom {
+    .method-style-var(border-bottom-right-radius, "@border-radius-base");
+    .method-style-var(border-bottom-left-radius, "@border-radius-base");
+    &-left{
+    .method-style-var(border-bottom-left-radius, "@border-radius-base");
+      }
+    &-right{
+    .method-style-var(border-bottom-right-radius, "@border-radius-base");
+      }
+  }
+
+  &-left {
+    .method-style-var(border-top-left-radius, "@border-radius-base");
+    .method-style-var(border-bottom-left-radius, "@border-radius-base");
+  }
+
+  &-xs {
+    border-radius: @border-radius-xs;
+  }
+
+  &-sm {
+    border-radius: @border-radius-sm;
+  }
+
+  &-md {
+    border-radius: @border-radius-md;
+  }
+
+  &-lg {
+    border-radius: @border-radius-lg;
+  }
+
+  &-circle {
+    border-radius: @border-radius-circle;
+  }
+
+  &-pill {
+    border-radius: @border-radius-xl;
+  }
+
+  &-0 {
+    border-radius: 0;
+  }
+
+}
