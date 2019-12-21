@@ -102,7 +102,7 @@
   );
 }
 
-.method-spacing-mp(@porm, @lrtb, @spacer, @n) {
+.method-spacing-mp(@porm, @lrtb, @spacer, @n:true) {
   @t             : e('spacing-@{spacer}');
   @{porm}-@{lrtb}: if(@n=n, -@@t, @@t);
 }
