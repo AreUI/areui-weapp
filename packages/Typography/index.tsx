@@ -80,27 +80,23 @@ const AuTypography: React.FC<AuTypographyProps> = ({
 	variant = 'body1',
 	selectable,
 }) => {
+	const classNames = clsx('AuTypography', className, {
+		[`AuTypography-text-${align}`]: align !== 'inherit',
+		[`AuTypography-text-${color}`]: color !== 'initial',
+		[`AuTypography-bg-${bgColor}`]: bgColor !== 'initial',
+		[`AuTypography-align-${vertical}`]: vertical !== 'inherit',
+		[`AuTypography-display-${display}`]: display !== 'inline',
+		[`AuTypography-${variant}`]: variant !== 'inherit',
+		[`AuTypography-text-nowrap${noWrap}`]:
+			typeof noWrap == 'number' && noWrap != 1,
+		'AuTypography-no-wrap':
+			(typeof noWrap == 'boolean' && noWrap === true) || noWrap == 1,
+		'AuTypography-gutter-bottom': gutterBottom,
+		'AuTypography-paragraph': paragraph,
+	});
 	return (
 		<Text
-			className={clsx(
-				'AuTypography',
-				className,
-				align !== 'inherit' && `AuTypography-text-${align}`,
-				color !== 'initial' && `AuTypography-text-${color}`,
-				bgColor !== 'initial' && `AuTypography-bg-${bgColor}`,
-				vertical !== 'inherit' && `AuTypography-align-${vertical}`,
-				display !== 'inline' && `AuTypography-display-${display}`,
-				variant !== 'inherit' && `AuTypography-${variant}`,
-				{ 'AuTypography-gutter-bottom': gutterBottom },
-				typeof noWrap == 'number' &&
-					noWrap != 1 &&
-					`AuTypography-text-nowrap${noWrap}`,
-				{
-					'AuTypography-no-wrap':
-						(typeof noWrap == 'boolean' && noWrap === true) || noWrap == 1,
-				},
-				{ 'AuTypography-paragraph': paragraph }
-			)}
+			className={classNames}
 			style={style && style}
 			selectable={selectable && selectable}
 		>
