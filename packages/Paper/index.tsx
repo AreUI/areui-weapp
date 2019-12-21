@@ -58,17 +58,12 @@ const AuPaper: React.FC<AuPaperProps> = ({
 	style,
 	boxShadow = 1,
 	rounded = 'rounded',
-} ) =>
-{
-	const classNames = clsx(
-		'AuPaper',
-		className,
-		{
-			[`AuPaper-rounded-${rounded}`]: rounded != 'none' && rounded != 'rounded',
-			'AuPaper-rounded': rounded == 'rounded',
-			[`AuPaper-shadow${boxShadow}`]: boxShadow,
-		}
-	);
+}) => {
+	const classNames = clsx('AuPaper', className, {
+		[`AuPaper-rounded-${rounded}`]: rounded != 'none' && rounded != 'rounded',
+		'AuPaper-rounded': rounded == 'rounded',
+		[`AuPaper-shadow${boxShadow}`]: boxShadow,
+	});
 	return (
 		<View className={classNames} style={style && style}>
 			{children}
