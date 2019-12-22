@@ -5,11 +5,16 @@
 
 .method-style-var(@property, @var, @default:none) {
   & when (isstring(@var)){
-    @{property}: e(replace(@var, '@([^() ]+)', '@{$1}', 'ig'));
-    @{property}: e(replace(@var, '@([^() ]+)', 'var(--$1, @{$1}) ', 'ig'));
+    @{property}: e(replace(@var, '@([^() |,]+)', '@{$1}', 'ig'));
+    & when (@default = none){
+      @{property}: e(replace(@var, '@([^() |,]+)', 'var(--$1, @{$1}) ', 'ig'));
+    }
+    & when not (@default = none){
+      @{property}: e(replace(@var, '@([^() |,]+)', 'var(--@{default}, @{$1}) ', 'ig'));
+    }
   }
   & when (iskeyword(@var)){
-    @{property}: @default;
+    @{property}: e('@{default}');
     @{property}: e(~'var(--@{var}, @{default})');
   }
 }
@@ -24,63 +29,60 @@
 .method-each-color(@property, @keyword: true) {
   if(@keyword,
     each(@colors, .(@v, @k) {
-        &-@{k} {
-          .method-default-color(@property, @v[500])
-        }
-
-        &-@{k}-s {
-          .method-default-color(@property, @v[A400])
-        }
-
-        &-linear-@{k} when (@property =background-color) {
-          box-shadow: fade(@v[500], 30%) 0px 3px 5px 2px;
-          background: linear-gradient(45deg, @v[500] 30%, @v[200] 90%);
-        }
-      }
-    ));
-
-  each(@common, .(@v, @k) {
       &-@{k} {
-        .method-default-color(@property, @v, @k)
+        .method-default-color(@property, @v[500])
+      }
+
+      &-@{k}-s {
+        .method-default-color(@property, @v[A400])
+      }
+
+      &-linear-@{k} when (@property =background-color) {
+        box-shadow: fade(@v[500], 30%) 0px 3px 5px 2px;
+        background: linear-gradient(45deg, @v[500] 30%, @v[200] 90%);
       }
     }
-  );
+  ));
+
+  each(@common, .(@v, @k) {
+    &-@{k} {
+      .method-default-color(@property, @v, @k)
+    }
+  });
 }
 
 .method-each-text(@name, @number, @size: true, @weight: false, @height: flase, @spacing: false) {
   each(range(@number), {
-      &-@{name}@{value} {
-        & when (@size) {
-          @f         :e('typography-@{name}@{value}-font-size');
-          font-size  : @@f;
-        }
-        & when (@weight) {
-          @w         :e('typography-@{name}@{value}-font-weight');
-          font-weight: @@w;
-        }
-        & when (@height) {
-          @h         :e('typography-@{name}@{value}-line-height');
-          line-height: @@h;
-        }
-        & when (@spacing) {
-          @s          :e('typography-@{name}@{value}-letter-spacing');
-          letter-spacing: @@s;
-        }
+    &-@{name}@{value} {
+      & when (@size) {
+        @f         :e('typography-@{name}@{value}-font-size');
+        font-size  : @@f;
+      }
+      & when (@weight) {
+        @w         :e('typography-@{name}@{value}-font-weight');
+        font-weight: @@w;
+      }
+      & when (@height) {
+        @h         :e('typography-@{name}@{value}-line-height');
+        line-height: @@h;
+      }
+      & when (@spacing) {
+        @s          :e('typography-@{name}@{value}-letter-spacing');
+        letter-spacing: @@s;
       }
     }
-  );
+  });
 }
 
 .method-each-text-dispaly(@dispalys) {
   each(@dispalys, .(@v, @k) {
-      .method-each-text(@k,
-        extract(@v, 1),
-        extract(@v, 2),
-        extract(@v, 3),
-        extract(@v, 4),
-        extract(@v, 5))
-    }
-  );
+    .method-each-text(@k,
+      extract(@v, 1),
+      extract(@v, 2),
+      extract(@v, 3),
+      extract(@v, 4),
+      extract(@v, 5))
+  });
 }
 
 .method-no-wrap() {
@@ -91,15 +93,14 @@
 
 .method-multi-ellipsis(@lines) {
   each(range(2, @lines), {
-      &@{value} {
-        display           : -webkit-box;
-        overflow          : hidden;
-        text-overflow     : ellipsis;
-        -webkit-line-clamp: @value;
-        -webkit-box-orient: vertical;
-      }
+    &@{value} {
+      display           : -webkit-box;
+      overflow          : hidden;
+      text-overflow     : ellipsis;
+      -webkit-line-clamp: @value;
+      -webkit-box-orient: vertical;
     }
-  );
+  });
 }
 
 .method-spacing-mp(@porm, @lrtb, @spacer, @n:true) {
@@ -111,29 +112,25 @@
   @mp: margin,padding;
   @lrtb: left,right,top,bottom;
   each( range( 2 ), .( @v ) {
-      @k   : extract( @mp, @v );
-      @morp: e(replace( @k, '(\w)(.*)', '$1', 'ig' ) );
-      each( range(0, @spacer), .( @_v ) {
-          each( range(2), .( @_n ) {
-              @n: if( @_n =2 and @_v > 0, n );
-              & when not ( if( @_n=2 and @_v =0, true ) ) {
-                each(@lrtb, .( @__v ) {
-                    @_lrtb: e(replace( @__v, '(\w)(.*)', '$1', 'ig'));
-                    @xory : if( ( @_lrtb =l ) or ( @_lrtb=r ), x, y );
-                    .@{morp}-@{n}@{_v},
-                    .@{morp}@{xory}-@{n}@{_v},
-                    .@{morp}@{_lrtb}-@{n}@{_v} {
-                      .method-spacing-mp( @k, @__v, @_v, @n );
-                    }
-                  }
-                );
-              }
+    @k   : extract( @mp, @v );
+    @morp: e(replace( @k, '(\w)(.*)', '$1', 'ig' ) );
+    each( range(0, @spacer), .( @_v ) {
+      each( range(2), .( @_n ) {
+        @n: if( @_n =2 and @_v > 0, n );
+        & when not ( if( @_n=2 and @_v =0, true ) ) {
+          each(@lrtb, .( @__v ) {
+            @_lrtb: e(replace( @__v, '(\w)(.*)', '$1', 'ig'));
+            @xory : if( ( @_lrtb =l ) or ( @_lrtb=r ), x, y );
+            .@{morp}-@{n}@{_v},
+            .@{morp}@{xory}-@{n}@{_v},
+            .@{morp}@{_lrtb}-@{n}@{_v} {
+              .method-spacing-mp( @k, @__v, @_v, @n );
             }
-          );
+          });
         }
-      );
-    }
-  );
+      });
+    });
+  });
 }
 
 .method-each-hairline() {
@@ -143,4 +140,23 @@
     .hairline(@value);
     })
   }
+}
+
+.method-each-shadow(@shadow-styles,@custom){
+  each(@shadow-styles,.(@v,@k){
+    &@{k}{
+      .method-style-var(
+        box-shadow,
+        e(
+          %(
+            '%s @shadow-default-color-20,%s @shadow-default-color-14,%s @shadow-default-color-12',
+            extract(@v, 1),
+            extract(@v, 2),
+            extract(@v, 3)
+            ),
+        ),
+        @custom
+      );
+    }
+  });
 }
